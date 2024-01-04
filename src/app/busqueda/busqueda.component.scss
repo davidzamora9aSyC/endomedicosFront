@@ -1,0 +1,29 @@
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.fondo {
+    background-color: rgba(45, 137, 199, 1);
+
+}
+.tamanio {
+    min-height: 50vh;
+}
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.avatar {
+    align-items: center;
+    border-radius: 0.2667rem;
+    display: flex;
+    flex-basis: 10.333rem;
+    flex-shrink: 0;
+    height: 5.333rem;
+    justify-content: center;
+    position: relative;
+    width: 5.333rem;
+
+}

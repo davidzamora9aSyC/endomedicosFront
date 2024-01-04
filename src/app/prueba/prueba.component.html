@@ -1,0 +1,115 @@
+<div class="position-relative d-none d-md-block">
+    <img src="assets/images/059.png" class="w-100 imagen-recortada" style="max-height: 65vh;" alt="Imagen de fondo">
+    <div class="search-container position-absolute top-50 end-0 translate-middle-y" style="min-width: 75vw;">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-8">
+                    <div class="search-box translucent-box rounded-3 m-5 p-4">
+                        <div class="consultation-selector d-flex align-items-center">
+                            <button type="button" class="btn btn-outline-primary rounded-pill me-2 fs-4"
+                                [ngClass]="{'active': activeConsultation === 'presencial'}"
+                                (click)="setActive('presencial')">Consulta Presencial</button>
+                            <button type="button" class="btn btn-outline-primary rounded-pill fs-4"
+                                [ngClass]="{'active': activeConsultation === 'virtual'}"
+                                (click)="setActive('virtual')">Consulta Virtual</button>
+                        </div>
+
+     
+                        <form (ngSubmit)="buscarDoctores(ciudadT.value, especialidadT.value, activeConsultation)">
+                            <input class="form-control mr-sm-2 mt-3 fs-3" #ciudadT type="text" placeholder="Ciudad"
+                                aria-label="City">
+                            <input class="form-control mr-sm-2 mt-2 mb-3 fs-3" #especialidadT type="text"
+                                placeholder="Especialidad o nombre" aria-label="Speciality">
+                            <button (click)="buscarDoctores(ciudadT.value, especialidadT.value, activeConsultation)"
+                                type="button" class="btn my-2 my-sm-0 w-100 btn-secondary fs-3">
+                                <i class="fa fa-search"></i>&nbsp;Buscar
+                            </button>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="d-md-none fondo">
+    <img src="assets/images/060.png" class="w-100 imagen-recortadaD" style="max-height: 30vh;" alt="Imagen de fondo">
+    <div class="text-content  position-absolute start-50 translate-middle text-center" style="z-index: 2; top: 25vh;">
+        <h1 class="text-white titulo-grande">Agenda tu consulta en minutos</h1>
+    </div>
+
+    <div class="search-container ">
+
+        <div class="container azul px-5">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-8">
+
+
+                    <div class="consultation-selector pt-4  d-flex align-items-center">
+                        <button type="button" class="btn btn-outline-primary rounded-pill me-2 fs-5"
+                            [ngClass]="{'active': activeConsultation === 'presencial'}"
+                            (click)="setActive('presencial')">Presencial</button>
+                        <button type="button" class="btn btn-outline-primary rounded-pill fs-5"
+                            [ngClass]="{'active': activeConsultation === 'virtual'}"
+                            (click)="setActive('virtual')">Virtual</button>
+                    </div>
+
+
+                    
+                    <form (ngSubmit)="buscarDoctores(ciudad.value, especialidad.value, activeConsultation)">
+                        <input class="form-control mr-sm-2 my-2 fs-5" #ciudad type="text" placeholder="Ciudad"
+                            aria-label="City">
+                        <input class="form-control mr-sm-2 my-2 fs-5" #especialidad type="text"
+                            placeholder="Especialidad o nombre" aria-label="Speciality">
+                        <button (click)="buscarDoctores(ciudad.value, especialidad.value, activeConsultation)"
+                            type="button" class="btn my-2 my-sm-0 w-100 btn-secondary fs-3">
+                            <i class="fa fa-search"></i>&nbsp;Buscar
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center my-5">
+    <h1 class="my-5">Especialidades</h1>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="assets/images/imagen1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="assets/images/imagen2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="assets/images/imagen3.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+</div>

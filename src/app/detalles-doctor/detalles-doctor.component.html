@@ -1,0 +1,41 @@
+<div class="fondo" style="background-color: #0d8cd6bb;">
+    <div class="container col-md-10 justify-content-center py-5">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <img [src]="doctor.imageUrl" class=" rounded-3 avatar m-2" alt="Foto del doctor">
+                            </div>
+                            <div>
+                                <h1 class="card-title mb-0">{{ doctor.nombre }}</h1>
+                                <p class="card-text"><small class="text-muted fs-3">{{ doctor.especialidades |
+                                        mapKeys }}</small>
+                                </p>
+                            </div>
+                        </div>
+                        <h6 class="card-subtitle mt-4 mb-2">Direcciones:</h6>
+                        <ul class="list-unstyled">
+                            <li *ngFor="let direccion of doctor.direcciones">
+                                • {{ direccion }}
+                            </li>
+                        </ul>
+
+                        <h6 class="card-subtitle mt-4 mb-2">Precios:</h6>
+                        <ul class="list-unstyled">
+                            <li class="d-flex justify-content-between">
+                                <span>Precio presencial:</span>
+                                <span class="text-right"> precio aqui</span>
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

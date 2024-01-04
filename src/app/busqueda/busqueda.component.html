@@ -1,0 +1,61 @@
+<div class = "tamanio" style="background-color: #0d8cd6bb;">
+    <div class="container col-md-10 justify-content-center py-5">
+        <div class="row">
+            <div *ngFor="let doctor of doctores">
+                <div class="card">
+                    <div class="card-body py-3 px-5">
+                        <div class="container"> <!-- Ensures the columns are in a single row -->
+                            <div class="row">
+                                <div class="col border-end pe-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            <img [src]="doctor.imageUrl" class="rounded-circle avatar m-2"
+                                                alt="Foto del doctor">
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title mb-0">{{ doctor.nombre }}</h5>
+                                            <p class="card-text"><small class="text-muted">{{ doctor.especialidades |
+                                                    mapKeys }}</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <h6 class="card-subtitle mt-4 mb-2">Direcciones:</h6>
+                                    <ul class="list-unstyled">
+                                        <li *ngFor="let direccion of doctor.direcciones">
+                                            • {{ direccion }}
+                                        </li>
+                                    </ul>
+
+                                    <h6 class="card-subtitle mt-4 mb-2">Precios:</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="d-flex justify-content-between">
+                                            <span>Precio presencial:</span>
+                                            <span class="text-right">Precio aqui</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <span>Precio virtual:</span>
+                                            <span class="text-right">aqui precio de otro servicio</span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <div class="col">
+                                    <h5 class="button m-5 p-5">
+                                        Proximo dia disponible {{ doctor.proxDate }}
+                                    </h5>
+                                    <button (click)="obtenerDoctor(doctor.nombre)" type="button"
+                                        class="btn ms-3 w-100 btn-secondary fs-3">
+                                        <i class="fa fa-search"></i>&nbsp;Agenda
+                                    </button>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

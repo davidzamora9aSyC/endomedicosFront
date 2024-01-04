@@ -1,0 +1,11 @@
+.custom-navbar-collapse {
+    position: absolute;
+    top: 100%; /* Posiciona justo debajo de la barra de navegación */
+    background-color: white; /* O el color de fondo que prefieras */
+    z-index: 1000; /* Asegura que se muestre por encima de otros elementos */
+    width: 80vh; /* O el ancho que prefieras */
+}
+
+.arriba{
+    z-index: 1;
+}

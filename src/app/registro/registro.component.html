@@ -1,0 +1,197 @@
+<div class="tamanio" style="background-color: #0d8cd6bb;">
+    <div class="row justify-content-center">
+        <div class="col-md-5 my-5">
+            <div class="card">
+                <div class="card-header text-center">
+                    Registro de Usuario
+                </div>
+                <div class="card-body">
+                    <form *ngIf="pasoActual === 1">
+                        <!-- Selector de Rol -->
+                        <div class="mb-3">
+                            <label for="rolSelector" class="form-label">Soy:</label>
+                            <div class="consultation-selector pt-2  d-flex align-items-center">
+                                <button type="button" class="btn btn-outline-primary rounded-pill me-2 fs-5"
+                                    [ngClass]="{'active': rolSeleccionado === 'paciente'}"
+                                    (click)="setActive('paciente')">Paciente</button>
+                                <button type="button" class="btn btn-outline-primary rounded-pill fs-5"
+                                    [ngClass]="{'active':rolSeleccionado === 'doctor'}"
+                                    (click)="setActive('doctor')">Doctor</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Nombres y apellidos completos </label>
+                            <input type="email" class="form-control" id="emailInput" required>
+                        </div>
+
+                        <!-- Campo de Correo Electrónico -->
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="emailInput" required>
+                        </div>
+
+                        <!-- Campos de Contraseña -->
+                        <div class="mb-3">
+                            <label for="passwordInput" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="passwordInput" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPasswordInput" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="confirmPasswordInput" required>
+                        </div>
+
+                        <!-- Campo de Teléfono Celular -->
+                        <div class="mb-3">
+                            <label for="phoneInput" class="form-label">Teléfono Celular</label>
+                            <input type="tel" class="form-control" id="phoneInput" required>
+                        </div>
+                        <button *ngIf="rolSeleccionado === 'paciente'" type="submit"
+                            class="btn btn-primary rounded-pill">Registrar ahora!</button>
+                        <button *ngIf="rolSeleccionado === 'doctor'" type="submit" class="btn btn-primary rounded-pill"
+                            (click)="Paso(1)">Siguiente</button>
+                    </form>
+
+
+
+                    <form *ngIf="pasoActual === 2" id="doctorForm">
+                        <div class="mb-3">
+                            <label for="numeroColegiado" class="form-label">Número de Colegiado</label>
+                            <input type="text" class="form-control" id="numeroColegiado" required>
+                        </div>
+
+                        <!-- Descripción del Doctor -->
+                        <div class="mb-3">
+                            <label for="descripcionDoctor" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcionDoctor" rows="3"></textarea>
+                        </div>
+
+
+                        <!-- Direcciones -->
+                        <div class="mb-3">
+                            <label class="form-label">Direcciones</label>
+                            <div *ngFor="let direccion of direcciones; let i = index">
+                                {{ direccion }}
+                                <button type="button" class="btn btn-danger btn-sm"
+                                    (click)="eliminarDireccion(i)">x</button>
+                            </div>
+                            <input type="text" class="form-control my-2" #nuevaDireccionInput
+                                placeholder="Nueva Dirección">
+                            <button type="button" class="btn btn-secondary"
+                                (click)="agregarDireccion(nuevaDireccionInput.value, nuevaDireccionInput)">Agregar
+                                Dirección</button>
+                        </div>
+
+                        <!-- Especialidades -->
+                        <div class="mb-3">
+                            <label class="form-label">Especialidades</label>
+                            <div *ngFor="let item of especialidadesArray; let i = index">
+                                {{ item.key }} - {{ item.value }}
+                                <button type="button" class="btn btn-danger btn-sm" (click)="eliminarEspecialidad(i)">x</button>
+                              </div>
+                              
+                            <input type="text" class="form-control my-2" #nuevaEspecialidadInput
+                                placeholder="Nueva Especialidad">
+                            <input type="text" class="form-control my-2" #lugarEstudioInput
+                                placeholder="Lugar de Estudio">
+                            <button type="button" class="btn btn-secondary"
+                                (click)="agregarEspecialidad(nuevaEspecialidadInput.value, lugarEstudioInput.value, nuevaEspecialidadInput, lugarEstudioInput)">Agregar
+                                Especialidad</button>
+                        </div>
+
+                        <!-- Servicios -->
+                        <div class="mb-3">
+                            <label class="form-label">Servicios</label>
+                            <div *ngFor="let servicio of servicios; let i = index">
+                                {{ servicio.servicio }} - {{ servicio.precio | currency }}
+                                <button type="button" class="btn btn-danger btn-sm"
+                                    (click)="eliminarServicio(i)">x</button>
+                            </div>
+                            <input type="text" class="form-control my-2" #nuevoServicioInput
+                                placeholder="Nuevo Servicio">
+                            <input type="number" class="form-control my-2" #precioServicioInput placeholder="Precio">
+                            <button type="button" class="btn btn-secondary"
+                                (click)="agregarServicio(nuevoServicioInput.value, precioServicioInput.value, nuevoServicioInput, precioServicioInput)">Agregar
+                                Servicio</button>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Horario</label>
+                            <div>Anade bloques de tiempo en los que trabajas.</div>
+                            <div *ngFor="let bloque of bloques; let i = index">
+                                {{ bloque.dia }}: {{ bloque.inicio | date}} - {{ bloque.fin | date }}
+                                <button type="button" class="btn btn-danger btn-sm"
+                                    (click)="eliminarBloque(bloque.dia, i)">x</button>
+                            </div>
+
+                            <div *ngFor="let dia of dias">
+                                <h3>{{ dia }}</h3>
+                                <div *ngFor="let bloque of obtenerBloquesPorDia(dia); let i = index">
+                                    {{ convertirHoraADate(bloque.inicio) | date:'shortTime' }}
+                                    {{ bloque.inicio | date:'shortTime' }} - {{ bloque.fin | date:'shortTime' }}
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                        (click)="eliminarBloque(dia, i)">xa</button>
+                                </div>
+                                <input type="time" id="inicio-{{dia}}" class="form-control my-2"
+                                    placeholder="Hora de inicio">
+                                <input type="time" id="fin-{{dia}}" class="form-control my-2" placeholder="Hora de fin">
+                                <button type="button" class="btn btn-primary" (click)="agregarBloque(dia)">Agregar
+                                    Bloque</button>
+                            </div>
+                        </div>
+
+                        <!-- Subida de Imagen del Doctor -->
+                        <div class="mb-3">
+                            <label for="imagenDoctor" class="form-label">Imagen del Doctor</label>
+                            <input type="file" class="form-control" id="imagenDoctor"
+                                (change)="cargarImagenDoctor($any($event))">
+                        </div>
+
+                        <!-- Subida de Imagen de la Tarjeta Profesional -->
+                        <div class="mb-3">
+                            <label for="tarjetaProfesional" class="form-label">Tarjeta Profesional frente</label>
+                            <input type="file" class="form-control" id="tarjetaProfesional"
+                                (change)="cargarTarjetaProfesionalFrente($any($event))">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tarjetaProfesional" class="form-label">Tarjeta Profesional parte trasera</label>
+                            <input type="file" class="form-control" id="tarjetaProfesional"
+                                (change)="cargarTarjetaProfesionalTrasera($any($event))">
+                        </div>
+
+
+
+
+
+                        <button type="submit" class="btn btn-primary rounded-pill" (click)="Paso(1)">Enviar</button>
+                        <button class="btn btn-secondary rounded-pill" (click)="Paso(-1)">Atras</button>
+                    </form>
+                    <div *ngIf="pasoActual === 3" class="container mt-5">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Solicitud Enviada Exitosamente!</h4>
+                                    <p>Tu solicitud ha sido recibida y está actualmente en revisión. Te notificaremos
+                                        una vez que haya sido procesada.</p>
+                                    <hr>
+                                    <p class="mb-0">Gracias por utilizar nuestros servicios.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container mt-5">
+                            <div class="row">
+                                <div class="col-md-8 offset-md-2 text-center">
+                                    <button onclick="window.location.href='#'" class="btn btn-primary">Volver a la
+                                        Página Principal</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
